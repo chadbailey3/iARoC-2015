@@ -1,5 +1,7 @@
 package org.jointheleague.iaroc;
 
+import android.os.SystemClock;
+
 import ioio.lib.api.IOIO;
 import ioio.lib.api.exception.ConnectionLostException;
 import org.wintrisstech.irobot.ioio.IRobotCreateAdapter;
@@ -22,9 +24,28 @@ public class Brain extends IRobotCreateAdapter {
         dashboard.log("Hello! I'm a Clever Robot!");
         //what would you like me to do, Clever Human?
 
+        driveDirect(500,500);
+        SystemClock.sleep(1000);
+        driveDirect(0,0);
+        readSensors(SENSORS_DISTANCE);
 
+        dashboard.log(getDistance() + "");
+        SystemClock.sleep(5000);
+        driveDirect(500,500);
+        SystemClock.sleep(1000);
 
+        driveDirect(0,0);
+        readSensors(SENSORS_DISTANCE);
 
+        dashboard.log(getDistance() + "");
+        SystemClock.sleep(5000);
+        driveDirect(500,500);
+        SystemClock.sleep(1000);
+        driveDirect(0,0);
+        readSensors(SENSORS_DISTANCE);
+
+        dashboard.log(getDistance() + "");
+        SystemClock.sleep(5000);
     }
     /* This method is called repeatedly. */
     public void loop() throws ConnectionLostException {}

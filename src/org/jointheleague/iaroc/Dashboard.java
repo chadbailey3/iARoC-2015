@@ -261,10 +261,10 @@ public class Dashboard extends IOIOActivity implements
 
 	/**
 	 * Writes a message to the Dashboard instance.
-	 * 
-	 * @param msg
-	 *            the message to write
-	 */
+	 *
+     * @param msg
+     *            the message to write
+     */
 	public void log(final String msg) {
 		runOnUiThread(new Runnable() {
 
