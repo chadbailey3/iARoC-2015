@@ -4,6 +4,7 @@ import android.os.SystemClock;
 
 import ioio.lib.api.IOIO;
 import ioio.lib.api.exception.ConnectionLostException;
+
 import org.wintrisstech.irobot.ioio.IRobotCreateAdapter;
 import org.wintrisstech.irobot.ioio.IRobotCreateInterface;
 import org.jointheleague.iaroc.sensors.UltraSonicSensors;
@@ -23,30 +24,20 @@ public class Brain extends IRobotCreateAdapter {
     public void initialize() throws ConnectionLostException {
         dashboard.log("Hello! I'm a Clever Robot!");
         //what would you like me to do, Clever Human?
-
-        driveDirect(500,500);
-        SystemClock.sleep(1000);
-        driveDirect(0,0);
-        readSensors(SENSORS_DISTANCE);
-
-        dashboard.log(getDistance() + "");
-        SystemClock.sleep(5000);
-        driveDirect(500,500);
-        SystemClock.sleep(1000);
-
-        driveDirect(0,0);
-        readSensors(SENSORS_DISTANCE);
-
-        dashboard.log(getDistance() + "");
-        SystemClock.sleep(5000);
-        driveDirect(500,500);
-        SystemClock.sleep(1000);
-        driveDirect(0,0);
-        readSensors(SENSORS_DISTANCE);
-
-        dashboard.log(getDistance() + "");
-        SystemClock.sleep(5000);
     }
+
     /* This method is called repeatedly. */
-    public void loop() throws ConnectionLostException {}
+    public void loop() throws ConnectionLostException {
+        readSensors(SENSORS_INFRARED_BYTE);
+        dashboard.log(getInfraredByte() + "");
+        if (getInfraredByte() == 248) {
+            driveDirect(500, 500);
+        } else if (getInfraredByte() == 244) {
+            driveDirect(500, 500);
+        } else if (getInfraredByte() == 255 || getInfraredByte() == 240) {
+            driveDirect(-100, 100);
+        } else {
+            driveDirect(0, 0);
+        }
+    }
 }
