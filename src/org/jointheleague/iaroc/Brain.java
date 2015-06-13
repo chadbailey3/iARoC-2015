@@ -28,6 +28,7 @@ public class Brain extends IRobotCreateAdapter {
 
     /* This method is called repeatedly. */
     public void loop() throws ConnectionLostException {
+//Gold Rush Code
         readSensors(SENSORS_INFRARED_BYTE);
         dashboard.log(getInfraredByte() + "");
         if (getInfraredByte() == 248) {
@@ -39,5 +40,16 @@ public class Brain extends IRobotCreateAdapter {
         } else {
             driveDirect(0, 0);
         }
+// Maze Runner Code
+//        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
+//        driveDirect(175, 500);
+//        if (isBumpRight())
+//        {
+//            driveDirect(-500, -500);
+//            SystemClock.sleep(350);
+//            driveDirect(500, -500);
+//            SystemClock.sleep(350);
+//        }
+
     }
 }
